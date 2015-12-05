@@ -64,13 +64,11 @@
     (ob-swift--wait ob-swift-eoe)
     (replace-regexp-in-string
      (format "^\\$R[0-9]+: String = \"%s\"\n" ob-swift-eoe) ""
-     (message
+     (replace-regexp-in-string
+      "^\\([0-9]+\\. \\)+\\([0-9]+> \\)*" ""
       (replace-regexp-in-string
-       "^\\([0-9]+\\. \\)+\\([0-9]+> \\)?" ""
-       (message
-        (replace-regexp-in-string
-         "^[0-9]+> " ""
-         ob-swift-process-output)))))))
+       "^\\([0-9]+> \\)+" ""
+       ob-swift-process-output)))))
 
 (provide 'ob-swift)
 ;;; ob-swift.el ends here
